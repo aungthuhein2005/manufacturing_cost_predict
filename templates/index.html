@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Manufacturing Cost Estimator</title>
+</head>
+<body class="bg-gray-100 py-10">
+  <div class="max-w-xl mx-auto bg-white p-6 rounded shadow-md">
+    <h1 class="text-2xl font-bold mb-4 text-center">Manufacturing Cost Estimator</h1>
+
+    <form method="POST" class="space-y-4">
+      <div>
+        <label class="block mb-1">Raw Material Quantity</label>
+        <input type="number" step="0.1" name="raw_material" required class="w-full border p-2 rounded" />
+      </div>
+      <div>
+        <label class="block mb-1">Labor Hours</label>
+        <input type="number" step="0.1" name="labor_hours" required class="w-full border p-2 rounded" />
+      </div>
+      <div>
+        <label class="block mb-1">Machine Hours</label>
+        <input type="number" step="0.1" name="machine_hours" required class="w-full border p-2 rounded" />
+      </div>
+      <div>
+        <label class="block mb-1">Overhead Cost</label>
+        <input type="number" step="0.1" name="overhead_cost" required class="w-full border p-2 rounded" />
+      </div>
+      <div>
+        <label class="block mb-1">Product Complexity (0=Low, 1=Med, 2=High)</label>
+        <input type="number" name="complexity" min="0" max="2" required class="w-full border p-2 rounded" />
+      </div>
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Estimate Cost</button>
+    </form>
+
+    {% if prediction is not none %}
+      <div class="mt-6 p-4 bg-green-100 text-green-800 rounded">
+        <strong>Estimated Cost:</strong> ${{ prediction | round(2) }}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
